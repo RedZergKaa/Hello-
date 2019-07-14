@@ -1,0 +1,174 @@
+class Program
+    {
+
+        static void Addition(params int[] integer)
+        {
+            int res = 1;
+            for (int i = 0; i < integer.Length; i++)
+            {
+                res = res * integer[i];
+            }
+            Console.WriteLine(res + " результат метод с ключевым словом params ");
+        }
+
+        static void arrayMetod(int[] array, int g)
+        {
+            int result = 0;
+            for (int i = 0; i < array.Length; i++)
+            {
+                result += (array[i] * g);
+            }
+            Console.WriteLine(result + " Массив с метода ");
+        }
+
+
+
+
+
+        static void Main(string[] args)
+
+        {
+            MyDream dream = new MyDream();
+            MyReality reality = new MyReality();
+
+
+            reality.myFear();
+            dream.myFear(5, out int z);
+            Console.WriteLine(z);
+            int[] array1 = new int[] { 1, 4, 6, 8, 7 };
+
+            arrayMetod(array1, 2);
+
+            Addition(5, 7, 8, 9, 10);
+            int[] array = new int[] { 1, 2, 3, 4, 5 };
+            Addition(array);
+            Addition();
+
+            char[,] symbs = { { 'A', 'B', 'C' }, { 'D', 'E', 'F' } };
+
+            Console.WriteLine("Исходный массив: ");
+
+
+            for (int i = 0; i < symbs.GetLength(0); i++)
+            {
+                for (int j = 0; j < symbs.GetLength(1); j++)
+                {
+                    Console.Write(symbs[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+            Random rnd = new Random();
+
+            int row = rnd.Next(symbs.GetLength(0) + 1);
+            int col = rnd.Next(symbs.GetLength(1) + 1);
+            Console.WriteLine("Добавляется  {0}-я строка  и {1} -й столбец", row, col);
+
+            char[,] tmp = new char[symbs.GetLength(0) + 1, symbs.GetLength(1) + 1];
+            int a, b;
+            char s = 'а';
+            for (int i = 0; i < symbs.GetLength(0); i++)
+            {
+                if (i < row) a = i;
+                else a = i + 1;
+
+                for (int j = 0; j < symbs.GetLength(1); j++)
+                {
+                    if (j < col) b = j;
+                    else b = j + 1;
+                    tmp[a, b] = symbs[i, j];
+                }
+            }
+            for (int j = 0; j < tmp.GetLength(1); j++)
+            {
+                tmp[row, j] = s;
+                s++;
+            }
+            for (int i = 0; i < tmp.GetLength(0); i++)
+            {
+                if (i != row)
+                {
+                    tmp[i, col] = s;
+                    s++;
+                }
+
+            }
+            symbs = tmp;
+            Console.WriteLine("новый массив: ");
+            for (int i = 0; i < symbs.GetLength(0); i++)
+            {
+                for (int j = 0; j < symbs.GetLength(1); j++)
+                {
+                    Console.Write(symbs[i, j] + " ");
+
+                }
+                Console.WriteLine();
+            }
+
+
+
+            char[,,] arraysymb = new char[4, 3, 5]; // многомерный массив
+
+            char[] q = { 'b', 'B', 'б', 'Б' };
+
+            Console.WriteLine(" массив символов одномерный");
+
+            for (int i = 0; i < arraysymb.GetLength(0); i++)
+            {
+                Console.WriteLine("Слой первого элемента для таблицы " + i);
+                for (int j = 0; j < arraysymb.GetLength(1); j++)
+                {
+                    for (int k = 0; k < arraysymb.GetLength(2); k++)
+                    {
+                        arraysymb[i, j, k] = q[i];
+                        q[i]++;
+                        Console.Write(arraysymb[i, j, k] + "\t");
+                    }
+                    Console.WriteLine();
+                }
+
+            }
+            Console.WriteLine("_____________");
+            
+
+
+
+            int[][] nums = {new int[]{1,2,3}, new int []{4,5}, new int[] {6,7,8,9 } };
+
+
+            char[][] symbs2 = new char[5][];
+
+            char g = 'A';
+
+            for(int i = 0; i < symbs2.Length; i++)
+            {
+                symbs2[i] = new char [i + 3];
+                for(int j = 0; j < symbs2[i].Length; j++)
+                {
+                    symbs2[i][j]= g;
+                    g++;
+                }
+            }
+            Console.WriteLine("Целочисленный массив: ");
+            for(int i = 0; i<nums.Length; i++)
+            {
+                for(int j = 0; j<nums[i].Length; j++)
+                {
+                    Console.Write("{0,3}", nums [i][j]);
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("Символьный массив: ");
+            foreach(char[] m in symbs2)
+            {
+                foreach(char f in m)
+                {
+                    Console.Write("{0,2}", f);
+                }
+                Console.WriteLine();
+            }
+            Console.WriteLine("_____________");
+            Console.ReadKey();
+
+        }
+    }
+}
